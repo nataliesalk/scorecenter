@@ -10,9 +10,17 @@ app.all('/', function(req, res, next) {
   next();
  });
 
+//Mongo Initialization 
+var mongoUri = process.env.MONGOLAB_URI ||
+   process.env.MONGOHQ_URL ||
+   'mongodb://localhost/scorecenter';
+var mongo = require('mongodb');
+var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
+     db = databaseConnection;
+});
 
 
-
+//code
 app.get('/', function(request, response) {
   response.send('Hello World!');
 });
