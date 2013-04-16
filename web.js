@@ -33,7 +33,7 @@ app.get('/', function(request, response) {
 
 
 app.get('/displayuser', function (req, res) {
-
+response.send(db.highscores[1].username);
 });
 
 app.post('/displayuser', function (req, res) {
