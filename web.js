@@ -31,10 +31,13 @@ app.get('/', function(request, response) {
 });
 
 
+
+app.get('/displayuser', function (req, res) {
+
+});
+
 app.post('/displayuser', function (req, res) {
-
 response.send(db.highscores[1].username);
-
 });
 
 var port = process.env.PORT || 5000;
