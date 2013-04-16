@@ -32,11 +32,11 @@ app.get('/', function(request, response) {
 
 
 
-app.get('/displayuser', function (req, res) {
+app.get('/displayuser', function (request, response) {
 response.send(db.highscores[1].username);
 });
 
-app.post('/displayuser', function (req, res) {
+app.post('/displayuser', function (request, response) {
 response.send(db.highscores[1].username);
 });
 
