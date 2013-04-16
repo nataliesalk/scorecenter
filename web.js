@@ -19,9 +19,15 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
      db = databaseConnection;
 });
 
-
 //code
 app.get('/', function(request, response) {
+
+
+db.collection('highscores', function(er, collection) {
+			collection.find()
+		};
+	
+  response.set('Content-Type','text/html');
   response.send('Hello World!');
 });
 
