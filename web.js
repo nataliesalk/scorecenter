@@ -31,11 +31,24 @@ app.get('/', function(request, response) {
 });
 
 
-
 app.get('/displayuser', function (request, response) {
  response.set('Content-Type','text/html');
  response.send(db.highscores.username[1]);
 });
+
+
+app.post ("/submit.json", function (request, response) {
+
+	var username = request.body.username;
+	var game = request.body.game_title;
+	var score = request.body.score;
+	var date = request.body.created_at;
+	console.log(username);
+	console.log(score);
+});
+
+
+
 
 
 var port = process.env.PORT || 5000;
