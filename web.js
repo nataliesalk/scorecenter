@@ -29,9 +29,9 @@ app.get('/', function(request, response) {
   });
 */
   var collection = db.collection('highscores');
-  highscores = JSON.stringify(collection);
+  JSON.stringify(collection);
   response.set('Content-Type','text/html');
-  response.send(highscores);
+  response.send(collection);
   
 });
 
