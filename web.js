@@ -34,7 +34,7 @@ app.get('/', function(request, response) {
 
 app.get('/displayuser', function (request, response) {
  response.set('Content-Type','text/html');
- response.send(db.highscores[1].username);
+ response.send(db.highscores.username);
 });
 
 
