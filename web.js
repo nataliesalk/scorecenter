@@ -10,17 +10,6 @@ app.all('/', function(req, res, next) {
   next();
  });
 
-//initialize Mongo 
-var mongo = require('mongodb');
-var mongoUri = process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  'mongodb://localhost/mydb'; 
-mongo.Db.connect(mongoUri, function (err, db) {
-  db.collection('mydocs', function(er, collection) {
-    collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
-    });
-  });
-});
 
 
 
@@ -30,7 +19,7 @@ app.get('/', function(request, response) {
 
 
 app.get('/submit.json', function(request, response) {
- response.send('error');
+// response.send('error');
 });
 
 app.post('/submit.json', function(request, response) {
