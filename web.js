@@ -45,6 +45,12 @@ app.post ("/submit.json", function (request, response) {
 	var date = request.body.created_at;
 	console.log(username);
 	console.log(score);
+	
+});
+
+app.get('/highscores.json', function(request, response) {
+response.send('this is where the highscores in json format will be');
+
 });
 
 
