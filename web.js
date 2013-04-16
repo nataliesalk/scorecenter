@@ -16,18 +16,16 @@ var mongoUri = process.env.MONGOLAB_URI ||
    'mongodb://localhost/scorecenter';
 var mongo = require('mongodb');
 var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
+	 console.log(error);
      db = databaseConnection;
 });
 
 //code
 app.get('/', function(request, response) {
-
-/*
-db.collection('highscores', function(er, highscores) {
-			highscores.find();
-		};
-*/		
-	
+	db.collection('highscores', function (err, collection) {
+    collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
+   	console.log('inserted');
+  });
   response.set('Content-Type','text/html');
   response.send('Hello World!');
 });
