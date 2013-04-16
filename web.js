@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
 
 
 db.collection('highscores', function(er, collection) {
-			collection.find()
+			collection.find();
 		};
 	
   response.set('Content-Type','text/html');
