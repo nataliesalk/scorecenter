@@ -31,7 +31,7 @@ app.get('/', function(request, response) {
   var collection = db.collection('highscores');
   JSON.stringify(collection);
   response.set('Content-Type','text/html');
-  response.send(collection);
+  response.send(collection.username);
   
 });
 
