@@ -27,7 +27,7 @@ app.get('/', function(request, response) {
 //   	response.send('inserted');
   });
   response.set('Content-Type','text/html');
-  response.send('Hello World!');
+  response.send('This is where all of the scores will be!');
 });
 
 
@@ -35,7 +35,6 @@ app.get('/displayuser', function (request, response) {
  response.set('Content-Type','text/html');
  response.send(db.highscores.username[1]);
 });
-
 
 app.post ("/submit.json", function (request, response) {
 
@@ -60,7 +59,6 @@ response.send('this is where you will search for a username ');
 app.post ("/username", function (request, response) {
 
 });
-
 
 
 var port = process.env.PORT || 5000;
