@@ -30,7 +30,7 @@ app.get('/', function(request, response) {
 */
   var collection = db.collection('highscores');
   response.set('Content-Type','text/html');
-  response.send(collection);
+  response.send(JSON.stringify(collection));
 });
 
 
