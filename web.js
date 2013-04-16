@@ -37,7 +37,7 @@ app.get('/displayuser', function (request, response) {
 });
 
 app.post('/displayuser', function (request, response) {
-response.send(db.highscores[1].username);
+response.send('there should be a username here');
 });
 
 var port = process.env.PORT || 5000;
