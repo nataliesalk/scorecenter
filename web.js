@@ -22,12 +22,15 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 
 //code
 app.get('/', function(request, response) {
+/*
 	db.collection('highscores', function (err, collection) {
     collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
 //   	response.send('inserted');
   });
+*/
+  var collection = db.collection('highscores');
   response.set('Content-Type','text/html');
-  response.send('This is where all of the scores will be!');
+  response.send(collection);
 });
 
 
