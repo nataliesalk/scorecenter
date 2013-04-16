@@ -33,12 +33,10 @@ app.get('/', function(request, response) {
 
 
 app.get('/displayuser', function (request, response) {
-//response.send(db.highscores[1].username);
+ response.set('Content-Type','text/html');
+response.send('username page');
 });
 
-app.post('/displayuser', function (request, response) {
-//response.send('there should be a username here');
-});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
