@@ -53,7 +53,13 @@ response.send('this is where the highscores in json format will be');
 
 });
 
+app.get('/username', function(request, response) {
+response.send('this is where you will search for a username ');
+});
 
+app.post ("/username", function (request, response) {
+
+});
 
 
 
