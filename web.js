@@ -22,11 +22,11 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 //code
 app.get('/', function(request, response) {
 
-
+/*
 db.collection('highscores', function(er, highscores) {
 			highscores.find();
 		};
-		
+*/		
 	
   response.set('Content-Type','text/html');
   response.send('Hello World!');
