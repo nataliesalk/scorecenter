@@ -24,7 +24,7 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 app.get('/', function(request, response) {
 	db.collection('highscores', function (err, collection) {
     collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
-    var username = req.body.username;
+    var username = request.body.username;
    	response.send(username);
   });
   response.set('Content-Type','text/html');
