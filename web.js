@@ -26,6 +26,7 @@ app.get('/', function(request, response) {
     collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
    	console.log('inserted');
   });
+  console.log('after inserted');
   response.set('Content-Type','text/html');
   response.send('Hello World!');
 });
