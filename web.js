@@ -2,6 +2,7 @@
 var express = require("express");
 var app = express();
 app.use(express.logger());
+app.use(express.bodyParser());
 
 //enable cross origin requests 
 app.all('/', function(req, res, next) {
