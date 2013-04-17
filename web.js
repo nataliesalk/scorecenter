@@ -28,8 +28,8 @@ app.get('/', function(request, response) {
 //   	response.send('inserted');
   });
 */
-  var collection = db.collection('highscores');
-  JSON.stringify(collection);
+  var collection = db.highscores.find();
+
   response.set('Content-Type','json');
   response.send(collection);
   
