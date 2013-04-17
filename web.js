@@ -43,9 +43,6 @@ app.get('/displayuser', function (request, response) {
 });
 
 app.post ("/submit.json", function (request, response) {
-
-
-
 	db.collection('highscores', function (err, collection) {
     collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
 //   	response.send('inserted');
@@ -60,6 +57,10 @@ app.post ("/submit.json", function (request, response) {
 */	
 });
 
+app.get ("/submit.json", function (request, response) {
+response.send('this page sends the information to mongo');
+});
+
 app.get('/highscores.json', function(request, response) {
 response.send('this is where the highscores in json format will be');
 
@@ -70,7 +71,6 @@ response.send('this is where you will search for a username ');
 });
 
 app.post ("/username", function (request, response) {
-
 });
 
 
