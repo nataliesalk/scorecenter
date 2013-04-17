@@ -44,13 +44,20 @@ app.get('/displayuser', function (request, response) {
 
 app.post ("/submit.json", function (request, response) {
 
+
+
+	db.collection('highscores', function (err, collection) {
+    collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
+//   	response.send('inserted');
+  });
+/*
 	var username = request.body.username;
 	var game = request.body.game_title;
 	var score = request.body.score;
 	var date = request.body.created_at;
 	console.log(username);
 	console.log(score);
-	
+*/	
 });
 
 app.get('/highscores.json', function(request, response) {
