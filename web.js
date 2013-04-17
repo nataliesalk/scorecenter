@@ -30,9 +30,9 @@ app.get('/', function(request, response) {
   });
 */
   var collection = db.collection('highscores');
-  var highscores=db.highscores.find();
+//  var highscores=db.highscores.find();
   response.set('Content-Type','json');
-  response.send(collection);
+  response.send('collection');
   
 });
 
