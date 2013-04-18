@@ -123,6 +123,7 @@ app.post('/submit.json', function (request, response) {
     	  console.log(string);
     	  collection.insert(string);
      */
+    	 collection.insert("{ 'username' : " + username + "} { 'game_title' :" + game_title + "} { 'score' : "+ score + "} { 'date':" + date + '}');
     });
 });
 
