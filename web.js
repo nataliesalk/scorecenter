@@ -108,7 +108,7 @@ app.post('/usersearch', function (request, response) {
         }
         else {
           response.set('Content-Type', 'text/html');
-          response.send('<!DOCTYPE html><html><h1> ' + user + 's Scores </h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
+          response.send('<!DOCTYPE html><html><h1> ' + user + 's Scores </h1>'+'<p><a href="/">Back to all highscores</a></p></html>'+'<table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table>');
         }
       });
     });
