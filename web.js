@@ -48,13 +48,12 @@ app.get('/', function(request, response) {
         else {
           db.close();
           response.set('Content-Type', 'text/html');
-          response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>High Scores</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p>Find the top 10 scores for a specific game</p><form name="topscores" action="highscores.json" method="get">Game: <input type="text" name="game_title"><input type="submit" value="Submit"></form><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
+          response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>Scores For All Games</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
         }
       });
     });
   });
 })
-
 
 
 //Send data to mongodb
