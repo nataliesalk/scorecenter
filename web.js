@@ -77,7 +77,7 @@ app.get('/highscores.json', function (request, response) {
   var game = request.query;
   var content = '';
 	db.collection('highscores', function (error, collection) {
-   	 collection.find(game).sort({score:-2}).limit(10, function (err, cursor) {
+   	 collection.find(game).sort({score:-1}).limit(10, function (err, cursor) {
    	  cursor.each(function (er, item) {
          if (item) {
      	     content = content + JSON.stringify(item);
@@ -111,7 +111,7 @@ app.post('/usersearch', function (request, response) {
         else {
           db.close();
           response.set('Content-Type', 'text/html');
-          response.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
+          response.send('<!DOCTYPE html><html><h1> ' + user + 's Scores </h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
         }
       });
     });
