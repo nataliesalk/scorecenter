@@ -21,7 +21,7 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
      db = databaseConnection;
 });
 
-//code
+//orginal page 
 app.get('/', function(request, response) {
  db.collection('highscores', function (err, collection) {
     collection.find().sort({game_title:1}, function (err, cursor) {
@@ -42,7 +42,7 @@ app.get('/', function(request, response) {
   });
 });
 
-
+//shows the user 
 app.get('/displayuser', function (request, response) {
   var user = request.body.username;
   var content = '';
@@ -78,12 +78,13 @@ app.post('/submit.json', function (request, response) {
   }
 });
 
-
+//this can be deleted 
 app.get ("/submit.json", function (request, response) {
 response.send('this page sends the information to mongo');
 });
 
 
+//shows all of the scores in json format 
 app.get('/highscores.json', function (request, response) {
   var game = request.query;
   var content = '';
@@ -104,12 +105,9 @@ app.get('/highscores.json', function (request, response) {
 });
 
 
-
-app.get('/username', function(request, response) {
-response.send('this is where you will search for a username ');
-});
-
-app.post ("/username", function (request, response) {
+app.get('/usersearch', function (request, response) {
+  response.set('Content-Type', 'text/html');
+  response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="displayuser" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
 });
 
 
