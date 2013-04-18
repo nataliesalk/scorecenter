@@ -57,17 +57,17 @@ app.get('/', function(request, response) {
 
 //Send data to mongodb
 app.post('/submit.json', function (request, response) {
-  if (request.username && request.score && request.game_title) {
+  //if (request.username && request.score && request.game_title) {
    	 db.collection('highscores', function (err, collection) {
    	 	  var date = new Date;
-    	  var username = "{ 'username' : " + request.username + "}";
-    	  var game_title = "{ 'game_title' : " + request.game_title + "}";
-    	  var score = "{ 'score' : " + request.score + "}";
+    	  var username = "{ 'username' : " + request.body.username + "}";
+    	  var game_title = "{ 'game_title' : " + request.body.game_title + "}";
+    	  var score = "{ 'score' : " + request.body.score + "}";
     	  string = '{' + username + game_title + score + date + '}';
     	  console.log(string);
     	  collection.insert(string);
     });
-  }
+ // }
 });
 
 
