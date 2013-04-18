@@ -38,24 +38,40 @@ app.get('/', function(request, response) {
 
 
 app.get('/displayuser', function (request, response) {
- response.set('Content-Type','text/html');
- response.send(db.highscores.username[1]);
+  var user = req.body.username;
+  var content = '';
+  db.collection('scores', function (error, collection) {
+    collection.find({username:user}).sort({score:1}, function (err, cursor) {
+      cursor.each(function (err, item) {
+        if (item) {
+          content = content + '<tr><td>' + item.game_title + '</td><td>' + item.score + '</td><td>' + item.created_at + '</td></tr>';
+        }
+        else {
+          db.close();
+          res.set('Content-Type', 'text/html');
+          res.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
+        }
+      });
+    });
+  });
 });
 
-app.post ("/submit.json", function (request, response) {
-	db.collection('highscores', function (err, collection) {
-    collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
-//   	response.send('inserted');
-  });
-/*
-	var username = request.body.username;
-	var game = request.body.game_title;
-	var score = request.body.score;
-	var date = request.body.created_at;
-	console.log(username);
-	console.log(score);
-*/	
+
+//Send data to mongodb
+app.post('/submit.json', function (request, response) {
+  if (request.username && request.score && request.game_title) {
+    db.collection('scores', function (err, collection) {
+   	  var date = new Date;
+      var username = "{ 'username' : " + request.username + "}";
+      var game_title = "{ 'game_title' : " + request.game_title + "}";
+      var score = "{ 'score' : " + request.score + "}";
+      jsonstring = '{' + username + game_title + score + date + '}';
+      console.log(jsonstring);
+      collection.insert(jsonstring);
+    });
+  }
 });
+
 
 app.get ("/submit.json", function (request, response) {
 response.send('this page sends the information to mongo');
@@ -81,12 +97,20 @@ app.get('/highscores.json', function (request, response) {
   });
 });
 
+
+
 app.get('/username', function(request, response) {
 response.send('this is where you will search for a username ');
 });
 
 app.post ("/username", function (request, response) {
 });
+
+
+
+
+
+
 
 
 var port = process.env.PORT || 5000;
