@@ -108,7 +108,7 @@ app.post('/usersearch', function (request, response) {
 //Send data to mongodb
 app.post('/submit.json', function (request, response) {
    	 db.collection('highscores', function (err, collection) {
-   	 	  var date = new Date;
+   	 	  var date = "{ 'created_at' : " + new Date + "}";
     	  var username = "{ 'username' : " + request.body.username + "}";
     	  var game_title = "{ 'game_title' : " + request.body.game_title + "}";
     	  var score = "{ 'score' : " + request.body.score + "}";
