@@ -61,9 +61,24 @@ app.get ("/submit.json", function (request, response) {
 response.send('this page sends the information to mongo');
 });
 
-app.get('/highscores.json', function(request, response) {
-response.send('this is where the highscores in json format will be');
 
+app.get('/highscores.json', function (request, response) {
+  var game = request.query;
+  var content = '';
+  db.collection('highscores', function (error, collection) {
+    collection.find(game).sort({score:-1}).limit(10, function (err, cursor) {
+      cursor.each(function (er, item) {
+        if (item) {
+          content = content + JSON.stringify(item);
+        }
+        else {
+          db.close();
+          response.set('Content-Type', 'text/json');
+          response.send(content);
+        }
+      });
+    });
+  });
 });
 
 app.get('/username', function(request, response) {
