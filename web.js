@@ -110,7 +110,7 @@ app.post('/submit.json', function (request, response) {
   response.header("Access-Control-Allow-Headers", "X-Requested-With");
   var username = request.body.username;
   var score = parseInt(request.body.score);
-  var game = request.body.game_title;
+  var game_title = request.body.game_title;
   var data = {"username":username, "score":score, "game_title":game, "created_at": Date()};
   db.collection('scores', function (err, collection) {
     collection.insert(data);
