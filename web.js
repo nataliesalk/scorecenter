@@ -107,14 +107,22 @@ app.post('/usersearch', function (request, response) {
 
 //Send data to Mongodb
 app.post('/submit.json', function (request, response) {
+	var username = request.body.username;
+	var date = new Date 
+	var game_title = request.body.game_title;
+	var score = request.body.score;
+		
    	 db.collection('highscores', function (err, collection) {
+   	 /*
    	 	  var date = "{ 'created_at' : " + new Date + "}";
     	  var username = "{ 'username' : " + request.username + "},";
     	  var game_title = "{ 'game_title' : " + request.game_title + "},";
     	  var score = "{ 'score' : " + request.score + "},";
+    
     	  string = '{' + username + game_title + score + date + '}';
     	  console.log(string);
     	  collection.insert(string);
+     */
     });
 });
 
