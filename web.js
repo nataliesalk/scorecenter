@@ -65,9 +65,9 @@ app.post('/submit.json', function (request, response) {
       var username = "{ 'username' : " + request.username + "}";
       var game_title = "{ 'game_title' : " + request.game_title + "}";
       var score = "{ 'score' : " + request.score + "}";
-      jsonstring = '{' + username + game_title + score + date + '}';
-      console.log(jsonstring);
-      collection.insert(jsonstring);
+      string = '{' + username + game_title + score + date + '}';
+      console.log(string);
+      collection.insert(string);
     });
   }
 });
