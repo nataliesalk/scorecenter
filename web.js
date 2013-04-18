@@ -66,21 +66,16 @@ app.get('/displayuser', function (request, response) {
 //Send data to mongodb
 app.post('/submit.json', function (request, response) {
   if (request.username && request.score && request.game_title) {
-    db.collection('highscores', function (err, collection) {
-   	  var date = new Date;
-      var username = "{ 'username' : " + request.username + "}";
-      var game_title = "{ 'game_title' : " + request.game_title + "}";
-      var score = "{ 'score' : " + request.score + "}";
-      string = '{' + username + game_title + score + date + '}';
-      console.log(string);
-      collection.insert(string);
+   	 db.collection('highscores', function (err, collection) {
+   	 	  var date = new Date;
+    	  var username = "{ 'username' : " + request.username + "}";
+    	  var game_title = "{ 'game_title' : " + request.game_title + "}";
+    	  var score = "{ 'score' : " + request.score + "}";
+    	  string = '{' + username + game_title + score + date + '}';
+    	  console.log(string);
+    	  collection.insert(string);
     });
   }
-});
-
-//this can be deleted 
-app.get ("/submit.json", function (request, response) {
-response.send('this page sends the information to mongo');
 });
 
 
@@ -107,10 +102,12 @@ app.get('/highscores.json', function (request, response) {
 
 app.get('/usersearch', function (request, response) {
   response.set('Content-Type', 'text/html');
-  response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="displayuser" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
+  response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="usersearch" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
 });
 
-app.post('/displayuser', function (request, response) {
+
+
+app.post('/usersearch', function (request, response) {
   var user = request.body.username;
   var content = '';
   db.collection('highscores', function (error, collection) {
