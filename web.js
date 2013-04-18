@@ -46,7 +46,7 @@ app.get('/', function(request, response) {
           content = content + '<tr><td>' + item.game_title + '</td><td>' + item.username + '</td><td>' + item.score + '</td><td>' + item.created_at + '</td></tr>';
         } 
         else {
-          db.close();
+       //   db.close();
           response.set('Content-Type', 'text/html');
           response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>Scores For All Games</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
         }
@@ -83,7 +83,7 @@ app.get('/highscores.json', function (request, response) {
      	     content = content + JSON.stringify(item);
       	  }
       	 else {
-		     db.close();
+		//    db.close();
       	    response.set('Content-Type', 'text/json');
       	    response.send(content);
          }
@@ -109,7 +109,7 @@ app.post('/usersearch', function (request, response) {
           content = content + '<tr><td>' + item.game_title + '</td><td>' + item.score + '</td><td>' + item.created_at + '</td></tr>';
         }
         else {
-          db.close();
+      //    db.close();
           response.set('Content-Type', 'text/html');
           response.send('<!DOCTYPE html><html><h1> ' + user + 's Scores </h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
         }
