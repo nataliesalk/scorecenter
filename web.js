@@ -47,7 +47,7 @@ app.get('/', function(request, response) {
         } 
         else {
           response.set('Content-Type', 'text/html');
-          response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>Scores</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p>Find the top 10 scores for any game</p><form name="topscores" action="highscores.json" method="get">Game: <input type="text" name="game_title"><input type="submit" value="Submit"></form><p>Scores for all Games</p><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
+          response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>Scores</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p>Find the top 10 scores for any game</p><form name="topscores" action="highscores.json" method="get">Game: <input type="text" name="game_title"><input type="submit" value="Submit"></form><p>Scores for all Games:</p><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
         }
       });
     });
@@ -93,7 +93,7 @@ app.get('/highscores.json', function (request, response) {
 //get the usersearch page 
 app.get('/usersearch', function (request, response) {
   response.set('Content-Type', 'text/html');
-  response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="usersearch" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
+  response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find A List Of Scores For A Gamer</h1><form name="search" action="usersearch" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
 });
 
 //this posts the data onto the page 
