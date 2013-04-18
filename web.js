@@ -23,17 +23,23 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 
 //code
 app.get('/', function(request, response) {
-/*
-	db.collection('highscores', function (err, collection) {
-    collection.insert({'game_title':'frogger', 'username': 'natalie', 'score': '150'});
-//   	response.send('inserted');
+ db.collection('highscores', function (err, collection) {
+    collection.find().sort({game_title:1}, function (err, cursor) {
+      console.log(err);
+      var content = '';
+      cursor.each(function (err, item) {
+        console.log(err);
+        if (item) {
+          content = content + '<tr><td>' + item.game_title + '</td><td>' + item.username + '</td><td>' + item.score + '</td><td>' + item.created_at + '</td></tr>';
+        } 
+        else {
+          db.close();
+          response.set('Content-Type', 'text/html');
+          response.send('<!DOCTYPE html><html><head><title>Scorecenter</title></head><body><h1>High Scores</h1><p><a href="/usersearch">Find scores for a specific user</a></p><p>Find the top 10 scores for a specific game</p><form name="topscores" action="highscores.json" method="get">Game: <input type="text" name="game_title"><input type="submit" value="Submit"></form><p><table border=1px width=400px><tr><td>Game</td><td>Username</td><td>Score</td><td>Date Played</td></tr>' + content + '</table></p></body></html>');
+        }
+      });
+    });
   });
-*/
-  var collection = db.collection('highscores');
-//  var highscores=db.highscores.find();
-  response.set('Content-Type','json');
-  response.send('collection');
-  
 });
 
 
