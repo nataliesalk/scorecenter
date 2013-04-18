@@ -59,7 +59,7 @@ app.get('/', function(request, response) {
 
 //Send data to mongodb
 app.post('/submit.json', function (request, response) {
-  //if (request.username && request.score && request.game_title) {
+db.collection('highscores', function (err, collection) {
    	 db.collection('highscores', function (err, collection) {
    	 	  var date = new Date;
     	  var username = "{ 'username' : " + request.body.username + "}";
@@ -69,7 +69,7 @@ app.post('/submit.json', function (request, response) {
     	  console.log(string);
     	  collection.insert(string);
     });
- // }
+     });
 });
 
 
