@@ -53,25 +53,6 @@ app.get('/', function(request, response) {
   });
 });
 
-//shows the user 
-app.get('/displayuser', function (request, response) {
-  var user = request.body.username;
-  var content = '';
-  db.collection('highscores', function (error, collection) {
-    collection.find({username:user}).sort({score:1}, function (err, cursor) {
-      cursor.each(function (err, item) {
-        if (item) {
-          content = content + '<tr><td>' + item.game_title + '</td><td>' + item.score + '</td><td>' + item.created_at + '</td></tr>';
-        }
-        else {
-          db.close();
-          response.set('Content-Type', 'text/html');
-          response.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
-        }
-      });
-    });
-  });
-});
 
 
 //Send data to mongodb
