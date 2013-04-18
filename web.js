@@ -110,8 +110,8 @@ app.get('/usersearch', function (request, response) {
   response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="displayuser" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
 });
 
-app.post('/displayuser', function (req, res) {
-  var user = req.body.username;
+app.post('/displayuser', function (request, response) {
+  var user = request.body.username;
   var content = '';
   db.collection('highscores', function (error, collection) {
     collection.find({username:user}).sort({score:1}, function (err, cursor) {
@@ -121,8 +121,8 @@ app.post('/displayuser', function (req, res) {
         }
         else {
           db.close();
-          res.set('Content-Type', 'text/html');
-          res.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
+          response.set('Content-Type', 'text/html');
+          response.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
         }
       });
     });
