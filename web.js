@@ -40,7 +40,7 @@ app.get('/', function(request, response) {
 app.get('/displayuser', function (request, response) {
   var user = request.body.username;
   var content = '';
-  db.collection('scores', function (error, collection) {
+  db.collection('highscores', function (error, collection) {
     collection.find({username:user}).sort({score:1}, function (err, cursor) {
       cursor.each(function (err, item) {
         if (item) {
