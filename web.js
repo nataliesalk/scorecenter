@@ -77,7 +77,7 @@ app.get('/highscores.json', function (request, response) {
   var game = request.query;
   var content = '';
 	db.collection('highscores', function (error, collection) {
-   	 collection.find(game).sort({score:1}).limit(10, function (err, cursor) {
+   	 collection.find(game).sort({score:-2}).limit(10, function (err, cursor) {
    	  cursor.each(function (er, item) {
          if (item) {
      	     content = content + JSON.stringify(item);
