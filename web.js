@@ -105,27 +105,20 @@ app.post('/usersearch', function (request, response) {
 });
 
 
-//Send data to Mongodb
 app.post('/submit.json', function (request, response) {
-	var username = request.body.username;
-	var date = new Date 
-	var game_title = request.body.game_title;
-	var score = request.body.score;
-		
-   	 db.collection('highscores', function (err, collection) {
-   	 /*
-   	 	  var date = "{ 'created_at' : " + new Date + "}";
-    	  var username = "{ 'username' : " + request.username + "},";
-    	  var game_title = "{ 'game_title' : " + request.game_title + "},";
-    	  var score = "{ 'score' : " + request.score + "},";
-    
-    	  string = '{' + username + game_title + score + date + '}';
-    	  console.log(string);
-    	  collection.insert(string);
-     */
-    	 collection.insert("{ 'username' : " + username + "} { 'game_title' :" + game_title + "} { 'score' : "+ score + "} { 'date':" + date + '}');
-    });
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var username = request.body.username;
+  var score = parseInt(request.body.score);
+  var game = request.body.game_title;
+  var data = {"username":username, "score":score, "game_title":game, "created_at": Date()};
+  db.collection('scores', function (err, collection) {
+    collection.insert(data);
+    response.send([{'game_title': game_title, 'score': score, 'username': username, 'created_at': Date() }]);
+
+  });
 });
+
 
 
 
