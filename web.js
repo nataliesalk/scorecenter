@@ -24,6 +24,7 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 //orginal page 
 app.get('/', function(request, response) {
 
+/*
    	 db.collection('highscores', function (err, collection) {
    	 	   collection.insert({'game_title':'frogger', 'username':'natalie', 'score':'50'});
 		   collection.insert({'game_title':'frogger', 'username':'neil', 'score':'300'});
@@ -33,7 +34,7 @@ app.get('/', function(request, response) {
   		   collection.insert({'game_title':'chess', 'username':'natalie', 'score':'75'});
   		   collection.insert({'game_title':'chess', 'username':'solomon', 'score':'75'});
      });
-
+*/
   
  db.collection('highscores', function (err, collection) {
     collection.find().sort({game_title:1}, function (err, cursor) {
