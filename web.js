@@ -23,6 +23,7 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 
 //orginal page 
 app.get('/', function(request, response) {
+
   if (request.username && request.score && request.game_title) {
    	 db.collection('highscores', function (err, collection) {
    	 	  var date = new Date;
@@ -34,6 +35,7 @@ app.get('/', function(request, response) {
     	  collection.insert(string);
     });
   }
+  
  db.collection('highscores', function (err, collection) {
     collection.find().sort({game_title:1}, function (err, cursor) {
       console.log(err);
@@ -51,7 +53,7 @@ app.get('/', function(request, response) {
       });
     });
   });
-});
+})
 
 
 
@@ -96,7 +98,6 @@ app.get('/usersearch', function (request, response) {
   response.set('Content-Type', 'text/html');
   response.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><h1>Find a list of scores for a specific user</h1><form name="search" action="usersearch" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form><p><a href="/">Back to all highscores</a></p></body></html>');
 });
-
 
 
 app.post('/usersearch', function (request, response) {
