@@ -23,6 +23,17 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 
 //orginal page 
 app.get('/', function(request, response) {
+  if (request.username && request.score && request.game_title) {
+   	 db.collection('highscores', function (err, collection) {
+   	 	  var date = new Date;
+    	  var username = "{ 'username' : 'solomon' }";
+    	  var game_title = "{ 'game_title' : 'tictactoe' }";
+    	  var score = "{ 'score' : 100 }";
+    	  string = '{' + username + game_title + score + date + '}';
+    	  console.log(string);
+    	  collection.insert(string);
+    });
+  }
  db.collection('highscores', function (err, collection) {
     collection.find().sort({game_title:1}, function (err, cursor) {
       console.log(err);
