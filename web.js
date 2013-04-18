@@ -54,28 +54,9 @@ app.get('/', function(request, response) {
   });
 })
 
-/*
-app.post('/submit.json', function (request, response) {
-	var username = request.body.username;
-	 var score = parseInt(request.body.score);
-	  var toInsert = {"username":username,"score":score, "created_at": new Date()};  
-	/*	db.collection ('scores', function (er, collection){
-			collection.insert(toInsert, funciton (err,saved){
-			 if (err) {
-				response.send('error')
-			 }
-			 else if (!saved){
-				response.send("data not saved")
-			 }
-			 else {
-				res.send("local storage") 
-             } 
-    	});
-  */  });
-});
-/*
 
-/*
+
+
 //Send data to mongodb
 app.post('/submit.json', function (request, response) {
   //if (request.username && request.score && request.game_title) {
@@ -90,7 +71,7 @@ app.post('/submit.json', function (request, response) {
     });
  // }
 });
-*/
+
 
 //shows all of the scores in json format 
 app.get('/highscores.json', function (request, response) {
