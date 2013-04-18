@@ -38,7 +38,7 @@ app.get('/', function(request, response) {
 
 
 app.get('/displayuser', function (request, response) {
-  var user = req.body.username;
+  var user = request.body.username;
   var content = '';
   db.collection('scores', function (error, collection) {
     collection.find({username:user}).sort({score:1}, function (err, cursor) {
@@ -48,8 +48,8 @@ app.get('/displayuser', function (request, response) {
         }
         else {
           db.close();
-          res.set('Content-Type', 'text/html');
-          res.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
+          response.set('Content-Type', 'text/html');
+          response.send('<!DOCTYPE html><html><h1>Displaying a list of scores for ' + user + '</h1><table border=1px width=400px><tr><td>Game</td><td>Score</td><td>Date Played</td></tr>' + content + '</table><p><a href="/">Back to all highscores</a></p></html>');
         }
       });
     });
