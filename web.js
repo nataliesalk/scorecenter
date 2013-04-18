@@ -54,6 +54,7 @@ app.get('/', function(request, response) {
   });
 })
 
+/*
 app.post('/submit.json', function (request, response) {
 	var username = request.body.username;
 	 var score = parseInt(request.body.score);
@@ -72,6 +73,7 @@ app.post('/submit.json', function (request, response) {
     	});
   */  });
 });
+/*
 
 /*
 //Send data to mongodb
