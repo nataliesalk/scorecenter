@@ -112,7 +112,7 @@ app.post('/submit.json', function (request, response) {
   var score = parseInt(request.body.score);
   var game = request.body.game;
   var data = {"username":username, "score":score, "game_title":game, "created_at": Date()};
-  db.collection('scores', function (err, collection) {
+  db.collection('highscores', function (err, collection) {
     collection.insert(data);
     response.send([{'game_title': game, 'score': score, 'username': username, 'created_at': Date() }]);
 
