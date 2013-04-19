@@ -23,19 +23,6 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 
 //orginal page 
 app.get('/', function(request, response) {
-
-/*
-   	 db.collection('highscores', function (err, collection) {
-   	 	   collection.insert({'game_title':'frogger', 'username':'natalie', 'score':'50','created_at':new Date});
-		   collection.insert({'game_title':'frogger', 'username':'neil', 'score':'300','created_at':new Date});
-  		   collection.insert({'game_title':'jenga', 'username':'solomon', 'score':'20','created_at':new Date});
-  		   collection.insert({'game_title':'jenga', 'username':'natalie', 'score':'75','created_at':new Date});
- 		   collection.insert({'game_title':'chess', 'username':'neil', 'score':'75','created_at':new Date});
-  		   collection.insert({'game_title':'chess', 'username':'natalie', 'score':'75','created_at':new Date});
-  		   collection.insert({'game_title':'chess', 'username':'solomon', 'score':'75','created_at':new Date});
-     });
-*/
-  
  db.collection('highscores', function (err, collection) {
     collection.find().sort({game_title:1}, function (err, cursor) {
       console.log(err);
@@ -108,14 +95,13 @@ app.post('/usersearch', function (request, response) {
 app.post('/submit.json', function (request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var username = request.body.username;
-  var score = parseInt(request.body.score,10);
-  var game = request.body.game;
-  var data = {"username":username, "score":score, "game_title":game, "created_at": Date()};
+	  var username = request.body.username;
+	  var score = parseInt(request.body.score,10);
+	  var game = request.body.game;
+ 	  var data = {"username":username, "score":score, "game_title":game, "created_at": Date()};
   db.collection('highscores', function (err, collection) {
-    collection.insert(data);
-    response.send([{'game_title': game, 'score': score, 'username': username, 'created_at': Date() }]);
-
+  	  collection.insert(data);
+  	  response.send([{'game_title': game, 'score': score, 'username': username, 'created_at': Date() }]);	
   });
 });
 
